@@ -1,3 +1,5 @@
+package Classes;
+
 import java.util.ArrayList;
 
 public class Student extends Person {
@@ -36,14 +38,6 @@ public class Student extends Person {
 
     public void setGradeLevel(int gradeLevel) {
         this.gradeLevel = gradeLevel;
-    }
-
-    public String createStudent(String name, int age, String email, int studentId, int gradeLevel) {
-        Student student = new Student(name, age, email, studentId, gradeLevel);
-
-        String response = new java.util.Scanner(System.in).nextLine();
-
-
     }
 
 }

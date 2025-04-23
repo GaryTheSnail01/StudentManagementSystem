@@ -1,64 +1,53 @@
-import java.util.ArrayList;
+import Classes.Student;
+import Utils.SystemUtils;
+import java.util.Scanner;
 
 public class StudentManagementSystem {
-    public static ArrayList<Student> StudentList = new ArrayList<>();
-    public static ArrayList<Teacher> TeacherList = new ArrayList<>();
-    public static ArrayList<Course> CourseList = new ArrayList<>();
 
     public static void main(String[] args) {
-        String response = "";
+        Scanner scanner = new Scanner(System.in);
 
-        while (!response.equals("exit")) {
-            System.out.println("\nStudent Management System");
-            System.out.println("1. Add Student");
-            System.out.println("2. Add Teacher");
-            System.out.println("3. Add Course");
-            System.out.println("4. Assign Courses");
-            System.out.println("5. Search Student");
-            System.out.println("6. View Students & Teachers");
-            System.out.println("7. Show Courses");
-            System.out.println("8. Update Student Info");
-            System.out.println("9. Delete Student");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
+        while (true) {
+            showMenu();
+            int response;
 
             try {
-                response = new java.util.Scanner(System.in).nextLine();
-                System.out.println("\n");
+                response = scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("Invalid input. Please try again.");
-                continue;
+                scanner.next(); // Clear the input buffer
+                continue; // Prompt the user again
             }
 
             switch (response) {
-                case "1":
-                    // Add Student
+                case 1:
+                    handleAddStudent();
                     break;
-                case "2":
-                    // Add Teacher
+                case 2:
+                    // Add Classes.Teacher
                     break;
-                case "3":
+                case 3:
                     // Add Course
                     break;
-                case "4":
+                case 4:
                     // Assign Courses
                     break;
-                case "5":
-                    // Search Student
+                case 5:
+                    // Search Classes.Student
                     break;
-                case "6":
+                case 6:
                     // View Students & Teachers
                     break;
-                case "7":
+                case 7:
                     // Show Courses
                     break;
-                case "8":
-                    // Update Student Info
+                case 8:
+                    // Update Classes.Student Info
                     break;
-                case "9":
-                    // Delete Student
+                case 9:
+                    // Delete Classes.Student
                     break;
-                case "0":
+                case 0:
                     // Exit
                     break;
                 default:
@@ -66,4 +55,38 @@ public class StudentManagementSystem {
             }
         }
     }
+
+    private static void showMenu() {
+        System.out.println("\nClasses.Student Management System");
+        System.out.println("1. Add Classes.Student");
+        System.out.println("2. Add Classes.Teacher");
+        System.out.println("3. Add Course");
+        System.out.println("4. Assign Courses");
+        System.out.println("5. Search Classes.Student");
+        System.out.println("6. View Students & Teachers");
+        System.out.println("7. Show Courses");
+        System.out.println("8. Update Classes.Student Info");
+        System.out.println("9. Delete Classes.Student");
+        System.out.println("0. Exit");
+        System.out.print("Enter your choice: ");
+    }
+
+    private static void handleAddStudent() {
+        System.out.println("\nAdding a new student...");
+
+        String name = SystemUtils.readNonEmptyString("Enter student name: ");
+        int age = SystemUtils.readPositiveInt("Enter student age: ");
+        String email = SystemUtils.readNonEmptyString("Enter student email: "); // Change to readEmail
+        int studentId = SystemUtils.readPositiveInt("Enter student ID: "); // Change to IDGeneration
+        int gradeLevel = SystemUtils.readIntInRange("Enter student grade level (1-12): ", 1, 12);
+
+        try {
+            Student student = new Student(name, age, email, studentId, gradeLevel);
+            SystemUtils.addStudent(student);
+            System.out.println("Student added successfully!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+    }
+
 }

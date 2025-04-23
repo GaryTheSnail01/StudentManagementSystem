@@ -1,3 +1,5 @@
+package Classes;
+
 import java.util.ArrayList;
 
 public class Teacher extends Person {
@@ -21,7 +23,7 @@ public class Teacher extends Person {
     public String addCourse(Course course) {
         int numOfCourses = taughtCourses.size();
         if (numOfCourses >= 3) {
-            return "Teacher is already teaching 3 courses.";
+            return "Classes.Teacher is already teaching 3 courses.";
         } else {
             taughtCourses.add(course);
             return "Course added successfully.";
