@@ -5,7 +5,7 @@ public class Student extends Person {
     private int gradeLevel;
     private ArrayList<Course> enrolledCourses;
 
-    public Student(String name, int age, String email) {
+    public Student(String name, int age, String email, int studentId, int gradeLevel) {
         super(name, age, email);
         this.studentId = studentId;
         this.gradeLevel = gradeLevel;
@@ -33,4 +33,17 @@ public class Student extends Person {
             return "Course added successfully.";
         }
     }
+
+    public void setGradeLevel(int gradeLevel) {
+        this.gradeLevel = gradeLevel;
+    }
+
+    public String createStudent(String name, int age, String email, int studentId, int gradeLevel) {
+        Student student = new Student(name, age, email, studentId, gradeLevel);
+
+        String response = new java.util.Scanner(System.in).nextLine();
+
+
+    }
+
 }
