@@ -4,6 +4,7 @@ import Classes.Student;
 import Classes.Teacher;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class SystemUtils {
     private static ArrayList<Student> students = new ArrayList<>();
@@ -64,5 +65,34 @@ public class SystemUtils {
     }
 
     //readEmail
+    public static String readEmailString(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.print(prompt);
+                String input = scanner.nextLine().trim();
+
+                if (input.isEmpty()) {
+                    System.out.println("Input cannot be empty. Please enter a valid email address.");
+                    continue;
+                }
+
+                // Regular expression (Regex) to match with valid email formats
+                String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
+                        "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+                // Compile Regex
+                Pattern p = Pattern.compile(emailRegex);
+
+                // Check to see if user's input matches with the valid pattern
+                if (p.matcher(input).matches()) {
+                    return input;
+                }
+                System.out.println("Please enter a valid email address.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Please enter a valid email address.");
+            }
+        }
+    }
 
 }

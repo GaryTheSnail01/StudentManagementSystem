@@ -76,7 +76,7 @@ public class StudentManagementSystem {
 
         String name = SystemUtils.readNonEmptyString("Enter student name: ");
         int age = SystemUtils.readPositiveInt("Enter student age: ");
-        String email = SystemUtils.readNonEmptyString("Enter student email: "); // Change to readEmail
+        String email = SystemUtils.readEmailString("Enter student email: ");
         int studentId = SystemUtils.readPositiveInt("Enter student ID: "); // Change to IDGeneration
         int gradeLevel = SystemUtils.readIntInRange("Enter student grade level (1-12): ", 1, 12);
 
