@@ -16,6 +16,8 @@ public class SystemUtils {
         students.add(student);
     }
 
+    public static void addTeacher(Teacher teacher) { teachers.add(teacher); }
+
 
     // Reusable methods for reading user input
     public static String readNonEmptyString(String prompt) {

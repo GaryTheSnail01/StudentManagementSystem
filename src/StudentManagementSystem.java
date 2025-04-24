@@ -1,4 +1,5 @@
 import Classes.Student;
+import Classes.Teacher;
 import Utils.SystemUtils;
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class StudentManagementSystem {
                     handleAddStudent();
                     break;
                 case 2:
-                    // Add Classes.Teacher
+                    handleAddTeacher();
                     break;
                 case 3:
                     // Add Course
@@ -57,16 +58,16 @@ public class StudentManagementSystem {
     }
 
     private static void showMenu() {
-        System.out.println("\nClasses.Student Management System");
-        System.out.println("1. Add Classes.Student");
-        System.out.println("2. Add Classes.Teacher");
-        System.out.println("3. Add Course");
+        System.out.println("\nStudent Management System");
+        System.out.println("1. Add a Student");
+        System.out.println("2. Add a Teacher");
+        System.out.println("3. Add a Course");
         System.out.println("4. Assign Courses");
-        System.out.println("5. Search Classes.Student");
+        System.out.println("5. Search Student by ID");
         System.out.println("6. View Students & Teachers");
-        System.out.println("7. Show Courses");
-        System.out.println("8. Update Classes.Student Info");
-        System.out.println("9. Delete Classes.Student");
+        System.out.println("7. View Courses");
+        System.out.println("8. Update Student Info");
+        System.out.println("9. Delete a Student");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
     }
@@ -74,11 +75,12 @@ public class StudentManagementSystem {
     private static void handleAddStudent() {
         System.out.println("\nAdding a new student...");
 
-        String name = SystemUtils.readNonEmptyString("Enter student name: ");
-        int age = SystemUtils.readPositiveInt("Enter student age: ");
-        String email = SystemUtils.readEmailString("Enter student email: ");
+        String name = SystemUtils.readNonEmptyString("Enter student's name: ");
+        int age = SystemUtils.readPositiveInt("Enter student's age: ");
+        String email = SystemUtils.readEmailString("Enter student's email: ");
         int studentId = SystemUtils.readPositiveInt("Enter student ID: "); // Change to IDGeneration
         int gradeLevel = SystemUtils.readIntInRange("Enter student grade level (1-12): ", 1, 12);
+        // Add addCourse
 
         try {
             Student student = new Student(name, age, email, studentId, gradeLevel);
@@ -87,6 +89,26 @@ public class StudentManagementSystem {
         } catch (IllegalArgumentException e) {
             System.out.println("ERROR: " + e.getMessage());
         }
+    }
+
+    public static void handleAddTeacher() {
+        System.out.println("\nAdding a new teacher...");
+
+        String name = SystemUtils.readNonEmptyString("Enter teacher's name: ");
+        int age = SystemUtils.readPositiveInt("Enter teacher's age: ");
+        String email = SystemUtils.readEmailString("Enter teacher's email: ");
+        int teacherID = SystemUtils.readPositiveInt("Enter teacher's ID: "); // Change to IDGeneration
+        String subject = SystemUtils.readNonEmptyString("Enter teacher's taught subject: ");
+        // Add addCourse
+
+        try {
+            Teacher teacher = new Teacher(name, age, email, teacherID, subject);
+            SystemUtils.addTeacher(teacher);
+            System.out.println("Teacher added successfully!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+
     }
 
 }
