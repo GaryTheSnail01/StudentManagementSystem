@@ -3,7 +3,7 @@ package Classes;
 import java.util.ArrayList;
 
 public class Student extends Person {
-    private int studentId;
+    private final int studentId;
     private int gradeLevel;
     private ArrayList<Course> enrolledCourses;
 

@@ -17,13 +17,8 @@ public class Course {
         return courseId;
     }
 
-    public String setCourseName(String courseName) {
-        int length = courseName.length();
-        if (length == 0) {
-            return "Course name cannot be empty.";
-        } else {
-            this.courseName = courseName;
-            return "Course name set successfully.";
-        }
-    }
+//    public String setCourseName(String courseName) {
+//
+//        }
+//    }
 }

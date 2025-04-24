@@ -1,3 +1,4 @@
+import Classes.Course;
 import Classes.Student;
 import Classes.Teacher;
 import Utils.SystemUtils;
@@ -28,7 +29,7 @@ public class StudentManagementSystem {
                     handleAddTeacher();
                     break;
                 case 3:
-                    // Add Course
+                    handleAddCourse();
                     break;
                 case 4:
                     // Assign Courses
@@ -108,7 +109,21 @@ public class StudentManagementSystem {
         } catch (IllegalArgumentException e) {
             System.out.println("ERROR: " + e.getMessage());
         }
+    }
 
+    public static void handleAddCourse() {
+        System.out.println("Creating a New Course...");
+
+        String name = SystemUtils.readNonEmptyString("Enter the name of the course: ");
+        int courseID = SystemUtils.readPositiveInt("Enter course ID: "); // Change to IDGeneration
+
+        try {
+            Course course = new Course(name, courseID);
+            SystemUtils.addCourse(course);
+            System.out.println("Course created successfully!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERROR: " + e);
+        }
     }
 
 }
