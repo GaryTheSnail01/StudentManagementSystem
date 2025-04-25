@@ -100,4 +100,31 @@ public class SystemUtils {
         }
     }
 
+    public static Student searchStudentID(int id) {
+        for (Student student : students) {
+            if (student.getStudentId() == id) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public static Teacher searchTeacherID(int id) {
+        for (Teacher teacher : teachers) {
+            if (teacher.getTeacherId() == id) {
+                return teacher;
+            }
+        }
+        return null;
+    }
+
+    public static Course searchCourseID(int id) {
+        for (Course course : courses) {
+            if (course.getCourseId() == id) {
+                return course;
+            }
+        }
+        return null;
+    }
+
 }

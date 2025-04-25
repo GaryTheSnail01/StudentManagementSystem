@@ -9,6 +9,12 @@ public class StudentManagementSystem {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // Course and student added for testing/debugging
+        Course course1 = new Course("History", 1);
+        Student student1 = new Student("Test", 1, "gary@mail.com", 2, 1);
+        SystemUtils.addCourse(course1);
+        SystemUtils.addStudent(student1);
+
         while (true) {
             showMenu();
             int response;
@@ -32,10 +38,10 @@ public class StudentManagementSystem {
                     handleAddCourse();
                     break;
                 case 4:
-                    // Assign Courses
+                    handleAssignCourse();
                     break;
                 case 5:
-                    // Search Classes.Student
+                    // Search Student by ID
                     break;
                 case 6:
                     // View Students & Teachers
@@ -44,10 +50,10 @@ public class StudentManagementSystem {
                     // Show Courses
                     break;
                 case 8:
-                    // Update Classes.Student Info
+                    // Update Student Info
                     break;
                 case 9:
-                    // Delete Classes.Student
+                    // Delete Student
                     break;
                 case 0:
                     // Exit
@@ -124,6 +130,50 @@ public class StudentManagementSystem {
         } catch (IllegalArgumentException e) {
             System.out.println("ERROR: " + e);
         }
+    }
+
+    public static void handleAssignCourse() {
+        System.out.println("Assigning a course...");
+        Student student;
+        Teacher teacher;
+        Course course;
+
+        while (true) {
+            int personID = SystemUtils.readPositiveInt("Enter the student/teacher ID: ");
+            student = SystemUtils.searchStudentID(personID);
+            teacher = SystemUtils.searchTeacherID(personID);
+            if (student != null || teacher != null) {
+                break; // If a student or teacher is found, we break the while loop
+            }
+            System.out.println("Invalid ID. Please try again.");
+        }
+
+        while (true) {
+            int courseID = SystemUtils.readPositiveInt("Enter the course ID: ");
+            course = SystemUtils.searchCourseID(courseID);
+            if (course != null) {
+                break;
+            }
+            System.out.println("Invalid course ID. Please try again.");
+        }
+
+        if (student != null) {
+            try {
+                student.addCourse(course);
+            } catch (Exception e) {
+                System.out.println("ERROR: " + e.getMessage());
+            }
+        } else {
+            try {
+                teacher.addCourse(course);
+            } catch (Exception e) {
+                System.out.println("ERROR: " + e);
+            }
+        }
+
+
+        // search for course
+        //
     }
 
 }
