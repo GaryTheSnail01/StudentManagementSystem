@@ -26,13 +26,13 @@ public class Student extends Person {
         return enrolledCourses;
     }
 
-    public String addCourse(Course course) {
+    public void addCourse(Course course) {
         int numOfCourses = enrolledCourses.size();
         if (numOfCourses >= 5) {
-            return "Student is already enrolled in 5 courses.";
+            System.out.println("Student is already enrolled in 5 courses.");
         } else {
             enrolledCourses.add(course);
-            return "Course added successfully.";
+            System.out.println("Course added successfully!");
         }
     }
 

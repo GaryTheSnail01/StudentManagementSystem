@@ -20,13 +20,13 @@ public class Teacher extends Person {
 
     public ArrayList<Course> getTaughtCourses() { return taughtCourses; }
 
-    public String addCourse(Course course) {
+    public void addCourse(Course course) {
         int numOfCourses = taughtCourses.size();
         if (numOfCourses >= 3) {
-            return "Classes.Teacher is already teaching 3 courses.";
+            System.out.println("Teacher is already assigned 3 courses.");
         } else {
             taughtCourses.add(course);
-            return "Course added successfully.";
+            System.out.println("Course assigned successfully!");
         }
     }
 }
