@@ -20,24 +20,24 @@ public class Person {
         this.email = email.trim();
     }
 
-    public void getName() {
-        System.out.println(name);
+    public String getName() {
+        return name;
     }
 
-    public void getAge() {
-        System.out.println(age);
+    public int getAge() {
+        return age;
     }
 
-    public void getEmail() {
-        System.out.println(email);
+    public String getEmail() {
+        return email;
     }
 
     public void setName() {
-        this.name = SystemUtils.readNonEmptyString("Enter name: ");
+        name = SystemUtils.readNonEmptyString("Enter name: ");
     }
 
     public void setAge() {
-        this.age = SystemUtils.readPositiveInt("Enter age: ");
+        age = SystemUtils.readPositiveInt("Enter age: ");
     }
 
     public void setEmail() {
