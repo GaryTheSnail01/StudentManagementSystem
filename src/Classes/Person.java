@@ -1,5 +1,7 @@
 package Classes;
 
+import Utils.SystemUtils;
+
 public class Person {
     private String name;
     private int age;
@@ -30,30 +32,15 @@ public class Person {
         System.out.println(email);
     }
 
-    public void setName(String name) {
-        int length = name.length();
-        if (length == 0) {
-        } else {
-            this.name = name;
-        }
+    public void setName() {
+        this.name = SystemUtils.readNonEmptyString("Enter name: ");
     }
 
-    public void setAge(int age) {
-        if (name == null || name.trim().isEmpty()) { // Checking to see if name is empty or if it contains only spaces
-            throw new IllegalArgumentException("Name cannot be empty.");
-        } else {
-            this.age = age;
-        }
+    public void setAge() {
+        this.age = SystemUtils.readPositiveInt("Enter age: ");
     }
 
-    public void setEmail(String email) {
-        int length = email.length();
-        if (length == 0) {
-            throw new IllegalArgumentException("Email cannot be empty.");
-        } else if (!email.contains("@") || !email.contains(".")) {
-            throw new IllegalArgumentException("Invalid email format.");
-        } else {
-            this.email = email.trim();
-        }
+    public void setEmail() {
+        this.email = SystemUtils.readEmailString("Enter email: ");
     }
 }

@@ -1,5 +1,7 @@
 package Classes;
 
+import Utils.SystemUtils;
+
 public class Course {
     private String courseName;
     private final int courseId;
@@ -13,12 +15,12 @@ public class Course {
         return courseName;
     }
 
+    public void setCourseName() {
+        this.courseName = SystemUtils.readNonEmptyString("Enter the course's name: ");
+    }
+
     public int getCourseId() {
         return courseId;
     }
 
-//    public String setCourseName(String courseName) {
-//
-//        }
-//    }
 }

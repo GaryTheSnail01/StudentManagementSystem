@@ -1,5 +1,7 @@
 package Classes;
 
+import Utils.SystemUtils;
+
 import java.util.ArrayList;
 
 public class Student extends Person {
@@ -37,7 +39,7 @@ public class Student extends Person {
     }
 
     public void setGradeLevel(int gradeLevel) {
-        this.gradeLevel = gradeLevel;
+        this.gradeLevel = SystemUtils.readIntInRange("Enter grade level: ", 1, 12);
     }
 
 }

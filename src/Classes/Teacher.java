@@ -1,5 +1,7 @@
 package Classes;
 
+import Utils.SystemUtils;
+
 import java.util.ArrayList;
 
 public class Teacher extends Person {
@@ -17,6 +19,10 @@ public class Teacher extends Person {
     public int getTeacherId() { return teacherId; }
 
     public String getSubject() { return subject; }
+
+    public void setSubject() {
+        this.subject = SystemUtils.readNonEmptyString("Enter subject: ");
+    }
 
     public ArrayList<Course> getTaughtCourses() { return taughtCourses; }
 
