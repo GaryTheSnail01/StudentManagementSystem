@@ -127,4 +127,24 @@ public class SystemUtils {
         return null;
     }
 
+    public static void printStudentInfo(Student student) {
+        System.out.println("Name: " + student.getName());
+        System.out.println("ID: " + student.getStudentId());
+        System.out.println("Age: " + student.getAge());
+        System.out.println("Email: " + student.getEmail());
+        System.out.println("Grade Level: " + student.getGradeLevel());
+    }
+
+    public static void printStudents() {
+        for (Student student : students) {
+            System.out.println(student.getName());
+        }
+    }
+
+    public static void printTeachers() {
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher.getName());
+        }
+    }
+
 }

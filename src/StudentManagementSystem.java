@@ -8,6 +8,7 @@ public class StudentManagementSystem {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int response = -1;
 
         // Course and student added for testing/debugging
         Course course1 = new Course("History", 1);
@@ -15,9 +16,8 @@ public class StudentManagementSystem {
         SystemUtils.addCourse(course1);
         SystemUtils.addStudent(student1);
 
-        while (true) {
+        while (response != 0) {
             showMenu();
-            int response;
 
             try {
                 response = scanner.nextInt();
@@ -41,10 +41,10 @@ public class StudentManagementSystem {
                     handleAssignCourse();
                     break;
                 case 5:
-                    // Search Student by ID
+                    handleSearchStudent();
                     break;
                 case 6:
-                    // View Students & Teachers
+                    displayStudentsAndTeachers();
                     break;
                 case 7:
                     // Show Courses
@@ -56,7 +56,7 @@ public class StudentManagementSystem {
                     // Delete Student
                     break;
                 case 0:
-                    // Exit
+                    System.out.println("Closing program... Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -170,10 +170,29 @@ public class StudentManagementSystem {
                 System.out.println("ERROR: " + e);
             }
         }
+    }
 
+    public static void handleSearchStudent() {
+        System.out.println("Searching for a student...");
+        Student searchedStudent;
 
-        // search for course
-        //
+        while (true) {
+            int ID = SystemUtils.readPositiveInt("Enter student ID: ");
+
+            searchedStudent = SystemUtils.searchStudentID(ID);
+            if (searchedStudent != null) {
+                break;
+            }
+        }
+        SystemUtils.printStudentInfo(searchedStudent);
+    }
+
+    public static void displayStudentsAndTeachers() {
+        System.out.println("Students:");
+        SystemUtils.printStudents();
+
+        System.out.println("\nTeachers:");
+        SystemUtils.printTeachers();
     }
 
 }
