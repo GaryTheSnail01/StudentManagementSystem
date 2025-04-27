@@ -47,7 +47,7 @@ public class StudentManagementSystem {
                     displayStudentsAndTeachers();
                     break;
                 case 7:
-                    // Show Courses
+                    displayCourses();
                     break;
                 case 8:
                     // Update Student Info
@@ -193,6 +193,33 @@ public class StudentManagementSystem {
 
         System.out.println("\nTeachers:");
         SystemUtils.printTeachers();
+    }
+
+    public static void displayCourses() {
+        System.out.println("Courses:");
+        SystemUtils.printCourses();
+    }
+
+    public static void updateStudentInfo() {
+        System.out.println("Updating student info...");
+        Student student;
+
+        while (true) {
+            int ID = SystemUtils.readPositiveInt("Enter student ID: ");
+            student = SystemUtils.searchStudentID(ID);
+
+            if (student != null) {
+                break;
+            }
+            System.out.println("Student not found. Please try again.");
+        }
+
+        System.out.println("Options:");
+        System.out.println("1. Name");
+        System.out.println("2. Age");
+        System.out.println("3. Email");
+        System.out.println();
+
     }
 
 }

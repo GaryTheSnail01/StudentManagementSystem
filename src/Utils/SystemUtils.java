@@ -137,13 +137,19 @@ public class SystemUtils {
 
     public static void printStudents() {
         for (Student student : students) {
-            System.out.println(student.getName());
+            System.out.println("Name: " + student.getName() + ", ID: " + student.getStudentId());
         }
     }
 
     public static void printTeachers() {
         for (Teacher teacher : teachers) {
-            System.out.println(teacher.getName());
+            System.out.println("Name: " + teacher.getName() + ", ID: " + teacher.getTeacherId());
+        }
+    }
+
+    public static void printCourses() {
+        for (Course course : courses) {
+            System.out.println("Name: " + course.getCourseName() + ", ID: " + course.getCourseId());
         }
     }
 
