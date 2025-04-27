@@ -1,7 +1,10 @@
 import Classes.Course;
 import Classes.Student;
 import Classes.Teacher;
+import Utils.IDGeneration;
 import Utils.SystemUtils;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentManagementSystem {
@@ -11,10 +14,14 @@ public class StudentManagementSystem {
         int response = -1;
 
         // Course and student added for testing/debugging
-        Course course1 = new Course("History", 1);
-        Student student1 = new Student("Test", 1, "gary@mail.com", 2, 1);
+        Course course1 = new Course("History", IDGeneration.generateCourseID());
+        Student student1 = new Student("Test", 1, "gary@mail.com",
+                IDGeneration.generateStudentID(), 1, new ArrayList<Course>());
+        Teacher teacher1 = new Teacher("Beth", 100, "teach@school.net",
+                IDGeneration.generateTeacherID(), "History", new ArrayList<Course>());
         SystemUtils.addCourse(course1);
         SystemUtils.addStudent(student1);
+        SystemUtils.addTeacher(teacher1);
 
         while (response != 0) {
             showMenu();
@@ -53,7 +60,7 @@ public class StudentManagementSystem {
                     handleUpdateStudentInfo();
                     break;
                 case 9:
-                    // Delete Student
+                    handleDeleteStudent();
                     break;
                 case 0:
                     System.out.println("Closing program... Goodbye!");
@@ -85,12 +92,12 @@ public class StudentManagementSystem {
         String name = SystemUtils.readNonEmptyString("Enter student's name: ");
         int age = SystemUtils.readPositiveInt("Enter student's age: ");
         String email = SystemUtils.readEmailString("Enter student's email: ");
-        int studentId = SystemUtils.readPositiveInt("Enter student ID: "); // Change to IDGeneration
+        int studentId = IDGeneration.generateStudentID();
         int gradeLevel = SystemUtils.readIntInRange("Enter student grade level (1-12): ", 1, 12);
-        // Add addCourse
+        ArrayList<Course> enrolledCourses = new ArrayList<>();
 
         try {
-            Student student = new Student(name, age, email, studentId, gradeLevel);
+            Student student = new Student(name, age, email, studentId, gradeLevel, enrolledCourses);
             SystemUtils.addStudent(student);
             System.out.println("Student added successfully!");
         } catch (IllegalArgumentException e) {
@@ -104,12 +111,12 @@ public class StudentManagementSystem {
         String name = SystemUtils.readNonEmptyString("Enter teacher's name: ");
         int age = SystemUtils.readPositiveInt("Enter teacher's age: ");
         String email = SystemUtils.readEmailString("Enter teacher's email: ");
-        int teacherID = SystemUtils.readPositiveInt("Enter teacher's ID: "); // Change to IDGeneration
+        int teacherID = IDGeneration.generateTeacherID();
         String subject = SystemUtils.readNonEmptyString("Enter teacher's taught subject: ");
-        // Add addCourse
+        ArrayList<Course> taughtCourses = new ArrayList<>();
 
         try {
-            Teacher teacher = new Teacher(name, age, email, teacherID, subject);
+            Teacher teacher = new Teacher(name, age, email, teacherID, subject, taughtCourses);
             SystemUtils.addTeacher(teacher);
             System.out.println("Teacher added successfully!");
         } catch (IllegalArgumentException e) {
@@ -121,7 +128,7 @@ public class StudentManagementSystem {
         System.out.println("Creating a New Course...");
 
         String name = SystemUtils.readNonEmptyString("Enter the name of the course: ");
-        int courseID = SystemUtils.readPositiveInt("Enter course ID: "); // Change to IDGeneration
+        int courseID = IDGeneration.generateCourseID();
 
         try {
             Course course = new Course(name, courseID);
@@ -240,6 +247,37 @@ public class StudentManagementSystem {
                 System.out.println("Grade level changed successfully!");
         }
 
+    }
+
+    public static void handleDeleteStudent() {
+        System.out.println("Deleting a student...");
+        System.out.println("Enter '0' to return to the main menu.");
+
+        while (true) {
+            int studentID = SystemUtils.readPositiveInt("Enter student ID: ");
+            if (studentID == 0) {
+                System.out.println("Returning to main menu...");
+                return;
+            }
+
+            Student student = SystemUtils.searchStudentID(studentID);
+            if (student == null) {
+                System.out.println("Student not found. Please try again.");
+                continue; // Ask again
+            }
+
+            System.out.println("You are about to delete " + student.getName() + " from the database...");
+            int confirm = SystemUtils.readIntInRange("Enter '1' to confirm, or '0' to cancel: ", 0, 1);
+
+            if (confirm == 0) {
+                System.out.println("Student deletion canceled...");
+                return;
+            } else {
+                SystemUtils.deleteStudent(student);
+                System.out.println("Student deleted successfully.");
+                return;
+            }
+        }
     }
 
 }

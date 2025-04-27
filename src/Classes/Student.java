@@ -9,11 +9,11 @@ public class Student extends Person {
     private int gradeLevel;
     private ArrayList<Course> enrolledCourses;
 
-    public Student(String name, int age, String email, int studentId, int gradeLevel) {
+    public Student(String name, int age, String email, int studentId, int gradeLevel, ArrayList<Course> enrolledCourses) {
         super(name, age, email);
         this.studentId = studentId;
         this.gradeLevel = gradeLevel;
-        enrolledCourses = new ArrayList<>();
+        this.enrolledCourses = enrolledCourses;
     }
 
     public int getStudentId() {
@@ -29,7 +29,7 @@ public class Student extends Person {
     }
 
     public void addCourse(Course course) {
-        int numOfCourses = enrolledCourses.size();
+        int numOfCourses = getEnrolledCourses().size();
         if (numOfCourses >= 5) {
             System.out.println("Student is already enrolled in 5 courses.");
         }else if (this.getEnrolledCourses().contains(course)) {

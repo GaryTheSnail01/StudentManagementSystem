@@ -20,7 +20,7 @@ public class SystemUtils {
 
     public static void addCourse(Course course) { courses.add(course); }
 
-
+    public static void deleteStudent(Student student) { students.remove(student); }
 
     // Reusable methods for reading user input
     public static String readNonEmptyString(String prompt) {
@@ -133,6 +133,16 @@ public class SystemUtils {
         System.out.println("Age: " + student.getAge());
         System.out.println("Email: " + student.getEmail());
         System.out.println("Grade Level: " + student.getGradeLevel());
+
+        ArrayList<Course> courseList = student.getEnrolledCourses();
+        System.out.println("Enrolled Courses: ");
+        if (!courseList.isEmpty()) {
+            for (Course course : courseList) {
+                System.out.println(course.getCourseName());
+            }
+        } else {
+            System.out.println("None...");
+        }
     }
 
     public static void printStudents() {
