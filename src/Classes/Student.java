@@ -32,13 +32,16 @@ public class Student extends Person {
         int numOfCourses = enrolledCourses.size();
         if (numOfCourses >= 5) {
             System.out.println("Student is already enrolled in 5 courses.");
-        } else {
+        }else if (this.getEnrolledCourses().contains(course)) {
+            System.out.println("Student is already enrolled in this course.");
+        }
+        else {
             enrolledCourses.add(course);
             System.out.println("Course added successfully!");
         }
     }
 
-    public void setGradeLevel(int gradeLevel) {
+    public void setGradeLevel() {
         this.gradeLevel = SystemUtils.readIntInRange("Enter grade level: ", 1, 12);
     }
 

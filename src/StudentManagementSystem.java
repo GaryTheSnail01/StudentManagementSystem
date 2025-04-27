@@ -50,7 +50,7 @@ public class StudentManagementSystem {
                     displayCourses();
                     break;
                 case 8:
-                    // Update Student Info
+                    handleUpdateStudentInfo();
                     break;
                 case 9:
                     // Delete Student
@@ -200,7 +200,7 @@ public class StudentManagementSystem {
         SystemUtils.printCourses();
     }
 
-    public static void updateStudentInfo() {
+    public static void handleUpdateStudentInfo() {
         System.out.println("Updating student info...");
         Student student;
 
@@ -214,11 +214,31 @@ public class StudentManagementSystem {
             System.out.println("Student not found. Please try again.");
         }
 
-        System.out.println("Options:");
-        System.out.println("1. Name");
+        SystemUtils.printStudentInfo(student);
+
+        System.out.println("\nOptions:");
+        System.out.println("\n1. Name");
         System.out.println("2. Age");
         System.out.println("3. Email");
-        System.out.println();
+        System.out.println("4. Grade Level");
+        int selection = SystemUtils.readIntInRange("Select an option: ", 1, 4);
+
+        switch (selection) {
+            case 1:
+                student.setName();
+                System.out.println("Name changed successfully!");
+                break;
+            case 2:
+                student.setAge();
+                System.out.println("Age changed successfully!");
+                break;
+            case 3:
+                student.setEmail();
+                System.out.println("Email changed successfully!");
+            case 4:
+                student.setGradeLevel();
+                System.out.println("Grade level changed successfully!");
+        }
 
     }
 
